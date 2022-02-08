@@ -1,5 +1,5 @@
 [programs.localnet]
-mygifcollection = "HUgQr9V1HiByUdE8ooYTJXGaBWigExkLskc7VKGuB9Mx"
+mygifcollection = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
 
 [registry]
 url = "https://anchor.projectserum.com"
@@ -9,4 +9,4 @@ cluster = "localnet"
 wallet = "/Users/mehul/.config/solana/id.json"
 
 [scripts]
-test = "npx mocha -t 1000000 tests/"
+test = "node tests/mygifcollection.js"
