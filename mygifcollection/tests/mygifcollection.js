@@ -3,11 +3,12 @@ const anchor = require("@project-serum/anchor");
 const { SystemProgram } = require("@solana/web3.js");
 
 describe("mygifcollection", () => {
-  // Configure the client to use the local cluster.
-  const provider = anchor.Provider.local();
+  const provider = anchor.Provider.env();
   anchor.setProvider(provider);
   const program = anchor.workspace.Mygifcollection;
   const baseAccount = anchor.web3.Keypair.generate();
+
+  console.log(anchor.Provider.wallet);
 
   it("Is initialized!", async () => {
     await program.rpc.initialize({
