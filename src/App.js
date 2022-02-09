@@ -174,6 +174,22 @@ const App = () => {
             {gifList.map((item, index) => (
               <div className="gif-item" key={index}>
                 <img src={item.gifLink} alt={item.gifLink} />
+                <span
+                  style={{
+                    color: "white",
+                    paddingTop: "10px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Uploaded By : {item.userAddress.toString()}
+                </span>
+                <button
+                  className="cta-button connect-wallet-button"
+                  style={{ marginTop: "6px" }}
+                  // onClick={donateSol}
+                >
+                  Gift 0.5 Sol
+                </button>
               </div>
             ))}
           </div>
@@ -220,7 +236,9 @@ const App = () => {
           {!walletAddress && renderNotConnectedContainer()}
           {walletAddress && renderConnectedContainer()}
         </div>
-        <div className="footer-container">Built With ❤️ @mehuloswal</div>
+      </div>
+      <div className="footer-container">
+        <div className="footer-text">Built With ❤️ @mehuloswal</div>
       </div>
     </div>
   );
