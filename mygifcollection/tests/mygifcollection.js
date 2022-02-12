@@ -40,6 +40,24 @@ const main = async () => {
   account = await program.account.baseAccount.fetch(baseAccount.publicKey);
   console.log("👀 GIF Count", account.totalGifs.toString());
   console.log("👀 GIF List", account.gifList);
+
+  console.log("➡️Sending Some SOL to other account");
+  const account1 = anchor.web3.Keypair.generate();
+  const account2 = anchor.web3.Keypair.generate();
+
+  await provider.connection.confirmTransaction(
+    await provider.connection.requestAirdrop(account1.publicKey, 10000000000),
+    "confirmed"
+  );
+
+  await program.rpc.giftSol(200000000, {
+    accounts: {
+      from: account1.publicKey,
+      to: account2.publicKey,
+    },
+  });
+  const balance = program.provider.connection.getBalance(account2.publicKey);
+  console.log("💰 is ", balance);
 };
 
 const runMain = async () => {
