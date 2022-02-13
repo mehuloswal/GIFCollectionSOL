@@ -5,6 +5,7 @@ import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 import { Program, Provider, web3 } from "@project-serum/anchor";
 import idl from "./idl.json";
 import kp from "./keypair.json";
+import Modal from "./Modal";
 // SystemProgram is a reference to the Solana runtime!
 const { SystemProgram, Keypair } = web3;
 
@@ -38,6 +39,8 @@ const App = () => {
   const [walletAddress, setWalletAddress] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [gifList, setGifList] = useState([]);
+  const [show, setShow] = useState(false);
+  const [modalIndex, setModalIndex] = useState(0);
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -186,12 +189,21 @@ const App = () => {
                 <button
                   className="cta-button connect-wallet-button"
                   style={{ marginTop: "6px" }}
-                  // onClick={donateSol}
+                  onClick={() => {
+                    setShow(true);
+                    setModalIndex(index);
+                  }}
                 >
-                  Gift 0.5 Sol
+                  Gift Sol
                 </button>
               </div>
             ))}
+            <Modal
+              onClose={() => setShow(false)}
+              show={show}
+              gifList={gifList}
+              modalIndex={modalIndex}
+            />
           </div>
         </div>
       );
