@@ -50,11 +50,13 @@ const main = async () => {
     "confirmed"
   );
 
-  await program.rpc.giftSol(200000000, {
+  await program.rpc.giftSol(anchor.BN(20000000), {
     accounts: {
       from: account1.publicKey,
       to: account2.publicKey,
+      systemProgram: SystemProgram.programId,
     },
+    signers: [account1],
   });
   const balance = program.provider.connection.getBalance(account2.publicKey);
   console.log("💰 is ", balance);
